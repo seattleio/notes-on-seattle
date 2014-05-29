@@ -218,6 +218,16 @@ header ul.nav a:focus {
   color: #000;
 }
 
+#seattleio {
+  display: none;
+}
+
+@media (min-width: 700px) {
+  #seattleio {
+    display: inline-block;
+  }
+}
+
 a.button.get-started {
   height: 80px;
   line-height: 80px;
