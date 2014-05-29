@@ -9,7 +9,7 @@
   "scripts": {
     "test": "",
     "watch-js": "watchify browser.js -o public/bundle.js -t brfs",
-    "bundle": "browserify browser.js -o public/bundle.js",
+    "bundle": "browserify browser.js -o public/bundle.js -t brfs && uglifyjs public/bundle.js -o public/bundle.js",
     "server": "node server.js & gazer -p server.js node server.js",
     "start": "npm run watch-js & npm run server"
   },
