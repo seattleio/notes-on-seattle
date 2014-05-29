@@ -20,11 +20,7 @@ app.get('/:slug', function (req, res){
 
     sheet.rows.forEach(function (row) {
       if (row.slug == slug) {
-        res.render('post.ejs', { post: row });
-      }
-      else {
-        var obj = { title: 'Not found', content: 'That is not a thing.' };
-        res.render('post.ejs', { post: obj });
+        return res.render('post.ejs', { post: row });
       }
     })
   });
