@@ -1,0 +1,32 @@
+{
+  "name": "flatsheet-notes-express",
+  "description": "a microblog that uses flatsheet as a data source",
+  "version": "0.0.0",
+  "repository": {
+    "url": "git://github.com/sethvincent/flatsheet-notes-express.git"
+  },
+  "main": "server.js",
+  "scripts": {
+    "test": "",
+    "watch-js": "watchify browser.js -o public/bundle.js -t brfs",
+    "server": "node server.js & gazer -p server.js node server.js",
+    "start": "npm run watch-js & npm run server"
+  },
+  "dependencies": {
+    "express": "^4.3.1",
+    "ejs": "^1.0.0",
+    "flatsheet": "^0.2.2",
+    "lodash.template": "^2.4.1",
+    "paganate": "0.0.3",
+    "dom-events": "^0.1.1",
+    "element-class": "^0.1.1",
+    "remove-elements": "^0.1.0"
+  },
+  "devDependencies": {
+    "uglify-js": "^2.4.13",
+    "gazer": "0.0.3",
+    "browserify": "^4.1.6",
+    "watchify": "^0.10.1",
+    "brfs": "^1.1.1"
+  }
+}
