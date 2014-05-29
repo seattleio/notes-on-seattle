@@ -23,7 +23,7 @@ app.get('/:slug', function (req, res){
         res.render('post.ejs', { post: row });
       }
       else {
-        var obj = { title: 'Not found' content: 'That is not a thing.' };
+        var obj = { title: 'Not found', content: 'That is not a thing.' };
         res.render('post.ejs', { post: obj });
       }
     })
