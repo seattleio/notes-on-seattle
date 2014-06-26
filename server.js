@@ -19,7 +19,7 @@ app.get('/:slug', function (req, res){
     var slug = req.params['slug'];
 
     sheet.rows.forEach(function (row) {
-      if (row.slug == slug) {
+      if (row.published === 'true' && row.slug == slug) {
         return res.render('post.ejs', { post: row });
       }
     })

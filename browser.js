@@ -21,11 +21,8 @@ var total;
 /* initialize pagination */
 var page = paganate({ limit: limit });
 
-console.log('loading');
-
 /* listen for page event to page through items */
 page.on('page', function (page, offset) {
-  console.log('pagination is happening')
   /* get items from the local db */
   getItems(offset);
 });
@@ -47,7 +44,6 @@ var postListSource = fs.readFileSync('views/client/post-list.html', 'utf8');
 
 /* kick off the application */
 requestData(function () {
-  console.log('first request data is happening')
   page.page(0);
 });    
 
@@ -61,7 +57,7 @@ requestData(function () {
 function requestData (callback) {
   flatsheet.sheet(config.sheet, function (error, response){
     if (error) callback(error);
-    postList = response.rows.reverse();
+    postList = response.rows.filter(isPublished).reverse();
     total = postList.length;
     if (callback) callback();
   });
@@ -69,12 +65,9 @@ function requestData (callback) {
 
 /* get items from indexeddb based on pagination offset */
 function getItems (offset) {
-  console.log(offset, limit)
   var posts = postList.slice(offset, offset + limit);
-  console.log('get items', posts);
   var listEl = createEl('post-list', postListSource, { posts: posts, baseurl: config.baseurl });
   mainEl.appendChild(listEl);
-
   if (total <= offset + limit) elClass(getItemsEl).add('hidden');
 }
 
@@ -86,4 +79,8 @@ function createEl (slug, source, data) {
   el.className = slug;
   el.innerHTML = html;
   return el;
+}
+
+function isPublished (obj) {
+  return obj.published === 'true';
 }
